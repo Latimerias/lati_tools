@@ -7,7 +7,7 @@ If you don't want to download an .exe the script below script can also be run on
 
                 import numpy as np
                 
-                print("Application must be Z-up")
+                print("Expects angles coming from a Z-up DCC")
                 
                 # user inputs euler angles
                 # float() converts the input into a float, without this the values would be read as strings even if they were numbers, all values read by input() are read as strings.
