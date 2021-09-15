@@ -1,5 +1,5 @@
 
-(Application that runs on python, built on 3.7.7)
+(built on 3.7.7)
 
 This .exe allows the user to input the camera angles x,y,z from a DCC and return -vd and -vu values that can be used in radiance. For information at [https://latimerias.github.io/using-radiance](https://latimerias.github.io/using-radiance). Note that the .exe expects values from a program thats Z-up.
 
