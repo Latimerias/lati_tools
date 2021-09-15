@@ -1,12 +1,14 @@
 
 (Application that runs on python, built on 3.7.7)
 
-This .exe allows the user to input the camera angles x,y,z from a DCC and return -vd and -vu values that can be used in radiance. For information at [https://latimerias.github.io/using-radiance](https://latimerias.github.io/using-radiance)
+This .exe allows the user to input the camera angles x,y,z from a DCC and return -vd and -vu values that can be used in radiance. For information at [https://latimerias.github.io/using-radiance](https://latimerias.github.io/using-radiance). Note that the .exe expects values from a program thats Z-up.
 
 If you don't want to download an .exe the script below script can also be run on an online compiler like [this](https://www.online-python.com/online_python_compiler).
 
                 import numpy as np
-
+                
+                print("Application must be Z-up")
+                
                 # user inputs euler angles
                 # float() converts the input into a float, without this the values would be read as strings even if they were numbers, all values read by input() are read as strings.
                 e1 = float(input("x angle = "))
