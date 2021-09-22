@@ -1,4 +1,10 @@
 
+
+# Please
+If you have time help me out with my architectural research by filling out the survey [here.](https://docs.google.com/forms/d/e/1FAIpQLSdZtdf6eobLYJHM9Jrjs8mUJWDF1eSGMAo6GEEwMjzf-yTDpA/viewform?usp=sf_link)
+
+---
+
 (built on 3.7.7)
 
 This .exe allows the user to input the camera angles x,y,z from a DCC and return -vd and -vu values that can be used in radiance. For information at [https://latimerias.github.io/using-radiance](https://latimerias.github.io/using-radiance). Note that the .exe expects values from a program thats Z-up.
