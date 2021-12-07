@@ -1,6 +1,6 @@
 ---
 
-### Visit my [website](https://latimerias.github.io/){target="_blank"}
+### Visit my [website](https://latimerias.github.io/){:target="_blank"}
 
 ---
 
