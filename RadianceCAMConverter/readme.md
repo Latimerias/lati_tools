@@ -1,8 +1,5 @@
 
 
-# Please
-If you have time help me out with my architectural research by filling out the survey [here.]()
-
 ---
 
 (built on 3.7.7)
