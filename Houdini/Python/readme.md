@@ -16,7 +16,7 @@ For ease of use you can copy the .py files containing the functions into your ho
 
 mtlxUsdImporter(selectednodes, matname, importtextures)
 
-    ***selectednodes***
+    *** selectednodes ***
 
 ---
 
