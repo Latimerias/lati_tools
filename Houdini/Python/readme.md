@@ -33,7 +33,9 @@ This takes an integer of either 1 or 0 where 0 is True and 1 is False. This can 
 
 splitToComponents(infile, removeprefix, generate_materials, importtextures, uvtransform, uvunwrap):
 
-This splits the selected file into multiple components based on the unique name attribute values. Used for imported BIM files for quick procedural process visualization in Solaris.
+This splits the selected file into multiple components based on the unique name attribute values. Used for imported BIM files for quick procedural process visualization in Solaris. 
+
+Dependencies: re
 
 ***infile***             
 This takes a string input for the absolute path to the file being imported. This can be obtained using `hou.ui.selectFile()`.
