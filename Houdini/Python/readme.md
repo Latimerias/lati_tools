@@ -16,7 +16,7 @@ For ease of use you can copy the .py files containing the functions into your ho
 
 mtlxUsdImporter(selectednodes, matname, importtextures)
 
-***selectednodes*** 
+***selectednodes***         
 The material library nodes for the material network to be created in. This reads a single string or a list of strings which can be obtained through the `hou.ui.selectNode` function with `multiple_select=true`.
 
 ***matname***   
