@@ -43,7 +43,7 @@ This takes a string input for the absolute path to the file being imported. This
 ***removeprefix***            
 This removes a prefix from the name attribute on the imported geometry, sometimes this happens when import files from BIM or CAD softwares and cna be used to simplify component/material names. For example if your name attribute has values like `my_architecture_project/Foundation` you would set `removeprefix = "my_architecture_project/" to return 'foundation'.
 
-***generate_materials***                     
+***generatematerials***                     
 This takes a 0 or 1 integer where 0 is True and 1 is False. This can be obtained through the `hou.ui.displayMessage()` function. If set to 0 every component will get a generate a single materialX based network using the mtlxUsdImporter function with the material name set to the component name. 
 
 ***importtextures***            
