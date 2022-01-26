@@ -59,9 +59,9 @@ def mtlxUsdImporter(selectednodes, matname, importtextures):
         mtlxstandsurf_node.setMaterialFlag(False)
         usdpreviewsurf_node.setMaterialFlag(False)
         
-def splitToComponents(infile, removeprefix, generate_materials, importtextures, uvtransform, uvunwrap):        
-    from re import sub, re
-
+def splitToComponents(infile, removeprefix, generatematerials, importtextures, uvtransform, uvunwrap):        
+    import re
+    
     ## set node context
     stage = hou.node('/stage')   
 
@@ -152,10 +152,62 @@ def splitToComponents(infile, removeprefix, generate_materials, importtextures, 
         geosub_node.layoutChildren()
 
         ## autogenerate materials
-        if generate_materials == 0:
-            from jw_houdini_import_utils import mtlxUsdImporter
-                
-            mtlxUsdImporter(matlib_node, nodename, importtextures)   
+        if generatematerials == 0:  
             
-
-
+            matname = nodename
+        
+            if importtextures == 0:
+                diffuse_texture = hou.ui.selectFile(title='Diffuse Texture For ' + matname)
+                roughness_texture = hou.ui.selectFile(title='Roughness Texture For ' + matname)
+                normal_texture = hou.ui.selectFile(title='Normal Texture For ' + matname)
+            elif importtextures == 1:
+                diffuse_texture = ""
+                roughness_texture = ""
+                normal_texture = ""
+    
+            ## create nodes
+            collect_node = matlib_node.createNode("collect", matname)
+            mtlxstandsurf_node = matlib_node.createNode("mtlxstandard_surface", "mtlxstandard_surface_" + matname)
+            usdpreviewsurf_node = matlib_node.createNode("usdpreviewsurface", "usdpreviewsurface_" + matname)
+            usddiff_node = matlib_node.createNode("usduvtexture::2.0", "usduvtexture_diffuse_" + matname)
+            usdrough_node = matlib_node.createNode("usduvtexture::2.0", "usduvtexture_roughness_" + matname)
+            mtlxtexcoord_node = matlib_node.createNode("mtlxtexcoord", "mtlxtexcoord_" + matname)
+            mtlxdiff_node = matlib_node.createNode("mtlximage", "mtlximage_diffuse_" + matname)
+            mtlxrough_node = matlib_node.createNode("mtlximage", "mtlximage_roughness_" + matname)
+            mtlxnrml_node = matlib_node.createNode("mtlximage", "mtlximage_normal_" + matname)
+            mtlxnrmlmap_node = matlib_node.createNode("mtlxnormalmap", "mtlxnormalmap_" + matname)
+            
+            ## connect nodes
+            collect_node.setInput(0, usdpreviewsurf_node, 0)
+            collect_node.setInput(1, mtlxstandsurf_node, 0)
+            usdpreviewsurf_node.setInput(0, usddiff_node, 4)
+            usdpreviewsurf_node.setInput(5, usdrough_node, 0)
+            mtlxstandsurf_node.setInput(1, mtlxdiff_node, 0)
+            mtlxstandsurf_node.setInput(6, mtlxrough_node, 0)
+            mtlxstandsurf_node.setInput(40, mtlxnrmlmap_node, 0)
+            mtlxnrmlmap_node.setInput(0, mtlxnrml_node, 0)
+            mtlxnrml_node.setInput(1, mtlxtexcoord_node, 0)
+            mtlxdiff_node.setInput(1, mtlxtexcoord_node, 0)
+            mtlxrough_node.setInput(1, mtlxtexcoord_node, 0)
+            matlib_node.layoutChildren()
+            
+            ## set parameters
+            mtlxtexcoord_node.parm('signature').set('vector2')
+            usddiff_node.parm('sourceColorSpace').set('sRGB')
+            usdrough_node.parm('sourceColorSpace').set('raw')
+            mtlxdiff_node.parm('filecolorspace').set('srgb_texture')
+            mtlxrough_node.parm('filecolorspace').set('srgb_texture')
+            mtlxnrml_node.parm('filecolorspace').set('srgb_texture')
+            mtlxrough_node.parm('signature').set('float')
+            mtlxnrml_node.parm('signature').set('vector3')
+            
+            usddiff_node.parm('file').set(diffuse_texture)
+            usdrough_node.parm('file').set(roughness_texture)
+            mtlxdiff_node.parm('file').set(diffuse_texture)
+            mtlxrough_node.parm('file').set(roughness_texture)
+            mtlxnrml_node.parm('file').set(normal_texture)
+            
+            ## turn off render flags
+            
+            mtlxstandsurf_node.setMaterialFlag(False)
+            usdpreviewsurf_node.setMaterialFlag(False)
