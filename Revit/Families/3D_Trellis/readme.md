@@ -4,7 +4,7 @@ A fully parametric revit family for creating a 3D grid, inspired by Kengo Kuma.
 
 ---
 
-![](https://github.com/Latimerias/LatimeriasFiles/blob/main/Revit/Families/3D_Trellace/thumbnail.jpg)
+![](https://github.com/Latimerias/LatimeriasFiles/blob/main/Revit/Families/3D_Trellis/thumbnail.jpg)
 
 ---
 
