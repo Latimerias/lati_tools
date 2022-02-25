@@ -1,4 +1,4 @@
-## 3D Trellac
+## 3D Trellace
 
 A fully parametric revit family for creating a 3D grid, inspired by Kengo Kuma.
 
